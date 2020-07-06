@@ -32,10 +32,13 @@ ruleTester.run('anchor-has-content', rule, {
     { code: '<a>{foo.bar}</a>' },
     { code: '<a dangerouslySetInnerHTML={{ __html: "foo" }} />' },
     { code: '<a children={children} />' },
+    { code: '<a title={title} aria-label={ariaLabel} />' },
   ].map(parserOptionsMapper),
   invalid: [
     { code: '<a />', errors: [expectedError] },
     { code: '<a><Bar aria-hidden /></a>', errors: [expectedError] },
     { code: '<a>{undefined}</a>', errors: [expectedError] },
+    { code: '<a title={title} />', errors: [expectedError] },
+    { code: '<a aria-label={ariaLabel} />', errors: [expectedError] },
   ].map(parserOptionsMapper),
 });
